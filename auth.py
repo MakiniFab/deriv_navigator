@@ -8,7 +8,7 @@ from flask import Blueprint
 from werkzeug.security import generate_password_hash, check_password_hash    #hash password
 # from flask_jwt_extended import create_access_token, verify_jwt_in_request, get_jwt_identity, JWTManager, get_jwt, jwt_required #Authentication and route protection
 
-jwt = JWTManager()
+# jwt = JWTManager()
 
 #function to create admin role
 def admin_required():
