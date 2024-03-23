@@ -15,13 +15,13 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
+CORS(app)
 #postgresql://deriv_navigator_user:COZNJTkY2FlOGiMb7Th6mLtxgD4fcClZ@dpg-cnuo5s8l6cac73ak0vfg-a.oregon-postgres.render.com/deriv_navigator
 #postgresql://deriv_navigator_user:COZNJTkY2FlOGiMb7Th6mLtxgD4fcClZ@dpg-cnuo5s8l6cac73ak0vfg-a/deriv_navigator
 app.config['SECRET_KEY'] = 'navigator_deriv'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours = 1)
 #blueprints
 app.register_blueprint(auth_bp)
-CORS(app)
 db.init_app(app)
 jwt.init_app(app)
 migrate = Migrate(app, db)
