@@ -12,7 +12,7 @@ from flask import Blueprint
 
 #configure my app
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://deriv_navigator_user:COZNJTkY2FlOGiMb7Th6mLtxgD4fcClZ@dpg-cnuo5s8l6cac73ak0vfg-a.oregon-postgres.render.com/deriv_navigator'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 #postgresql://deriv_navigator_user:COZNJTkY2FlOGiMb7Th6mLtxgD4fcClZ@dpg-cnuo5s8l6cac73ak0vfg-a.oregon-postgres.render.com/deriv_navigator
