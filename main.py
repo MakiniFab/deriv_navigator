@@ -7,7 +7,7 @@ from flask_restful import reqparse, Resource
 from models import db, User
 from flask_sqlalchemy import SQLAlchemy
 from auth import auth_bp, jwt, admin_required
-# from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required
 from flask import Blueprint
 
 #configure my app
@@ -21,7 +21,7 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours = 1)
 #blueprints
 app.register_blueprint(auth_bp)
 db.init_app(app)
-# jwt.init_app(app)
+jwt.init_app(app)
 migrate = Migrate(app, db)
 
 @app.route('/home')

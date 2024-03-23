@@ -6,9 +6,9 @@ from models import db , User, TokenBlocklist
 from flask_restful import reqparse, Resource, Api
 from flask import Blueprint
 from werkzeug.security import generate_password_hash, check_password_hash    #hash password
-# from flask_jwt_extended import create_access_token, verify_jwt_in_request, get_jwt_identity, JWTManager, get_jwt, jwt_required #Authentication and route protection
+from flask_jwt_extended import create_access_token, verify_jwt_in_request, get_jwt_identity, JWTManager, get_jwt, jwt_required #Authentication and route protection
 
-# jwt = JWTManager()
+jwt = JWTManager()
 
 #function to create admin role
 def admin_required():
@@ -26,14 +26,14 @@ def admin_required():
 
 
 #function to revoke token after log out
-# @jwt.token_in_blocklist_loader
+@jwt.token_in_blocklist_loader
 def check_if_token_revoked(jwt_header, jwt_payload: dict) -> bool:
     jti = jwt_payload["jti"]
     token = db.session.query(TokenBlocklist.id).filter_by(jti=jti).scalar()
     return token is not None
 
 #function to identify current user
-# @jwt.user_lookup_loader
+@jwt.user_lookup_loader
 def user_lookup_callback(jwt_header, jwt_data):
     identity = jwt_data["sub"]
     return User.query.filter_by(id = identity).first()
@@ -87,7 +87,7 @@ class Login(Resource):
 
 #get user details
 class Profile(Resource):
-    # @jwt_required()
+    @jwt_required()
     def get(self):
         user_id = get_jwt_identity()
         user = User.query.get(user_id)
@@ -98,7 +98,7 @@ class Profile(Resource):
 
 #User log out
 class Logout(Resource):
-    # @jwt_required()
+    @jwt_required()
     def get(self):
         jwt_data = get_jwt()
         blocked_token = TokenBlocklist(jti=jwt_data.get('jti'), created_at=datetime.utcnow())
@@ -108,7 +108,7 @@ class Logout(Resource):
 
 # Admin route to delete a user
 class DeleteUser(Resource):
-    # @admin_required()
+    @admin_required()
     def delete(self, id):
         user = User.query.get(id)
         if user:
