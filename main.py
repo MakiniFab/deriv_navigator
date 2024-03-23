@@ -21,6 +21,7 @@ app.config['SECRET_KEY'] = 'navigator_deriv'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours = 1)
 #blueprints
 app.register_blueprint(auth_bp)
+CORS(app)
 db.init_app(app)
 jwt.init_app(app)
 migrate = Migrate(app, db)
