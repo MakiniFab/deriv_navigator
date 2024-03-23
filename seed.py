@@ -6,12 +6,12 @@ from main import app
 def create_admin_user():
     with app.app_context():
         admin_user_data = {
-            'first_name': 'Navigator',
-            'account': 'navigator',
-            'email': 'navigator@gmail.com',
-            'phone_no': +254704579253,
+            'first_name': 'Alex',
+            'account': 'alex',
+            'email': 'alex@gmail.com',
+            'phone_no': +254704579254,
             'admin': True,
-            'password': 'navigator'
+            'password': 'alex'
         }
 
         # Generate password hash
