@@ -71,7 +71,7 @@ class RegisterUser(Resource):
 
 #User log in
 class Login(Resource):
-    def post(self):
+    def post():
         data = login_args.parse_args()
         user = User.query.filter_by(email=data.get('email')).first()
 

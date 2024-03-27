@@ -1,0 +1,21 @@
+POST https://deriv-navigator.onrender.com/login
+Content-Type: application/json
+
+{
+  "email": "farbean@gmail.com",
+  "password": "farbean"
+}
+
+GET https://deriv-navigator.onrender.com/home
+Content-Type: 'application/json'
+
+POST https://deriv-navigator.onrender.com/signup
+Content-Type: application/json
+
+{
+  "first_name": "farbean",
+  "account": "farbean",
+  "email": "farbean@gmail.com",
+  "phone_no": "0704579252",
+  "password": "farbean"
+}
